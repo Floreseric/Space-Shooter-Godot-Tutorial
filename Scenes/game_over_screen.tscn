@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://tupi82cgxa1p"]
+
+[ext_resource type="FontFile" uid="uid://cmnoul55fnkmt" path="res://Space shooter redux/Bonus/kenvector_future.ttf" id="1_16cnv"]
+[ext_resource type="Script" path="res://Scenes/game_over_screen.gd" id="1_tviil"]
+[ext_resource type="PackedScene" uid="uid://ymwciojukt7h" path="res://Scenes/level.tscn" id="2_67wwq"]
+[ext_resource type="AudioStream" uid="uid://cu3ig3cgsseux" path="res://Space shooter redux/Bonus/sfx_shieldDown.ogg" id="4_311wp"]
+
+[node name="GAME OVER screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tviil")
+level_scene = ExtResource("2_67wwq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.227451, 0.180392, 0.247059, 1)
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_16cnv")
+theme_override_font_sizes/font_size = 80
+text = "GAME OVER
+"
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_16cnv")
+theme_override_font_sizes/font_size = 30
+text = "YOUR SCORE: "
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -115.5
+offset_top = -40.0
+offset_right = 115.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 45
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_16cnv")
+theme_override_font_sizes/font_size = 30
+text = "SPACE TO START AGAIN
+"
+
+[node name="SfxShieldDown" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_311wp")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="finished" from="SfxShieldDown" to="." method="_on_sfx_shield_down_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

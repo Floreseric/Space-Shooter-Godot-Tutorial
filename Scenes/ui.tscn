@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://b88siv661eds5"]
+
+[ext_resource type="FontFile" uid="uid://cmnoul55fnkmt" path="res://Space shooter redux/Bonus/kenvector_future.ttf" id="1_0i4gu"]
+[ext_resource type="Script" path="res://Scenes/ui.gd" id="1_mb38b"]
+[ext_resource type="AudioStream" uid="uid://bsiucdajauwkm" path="res://Space shooter redux/Bonus/sfx_shieldUp.ogg" id="3_4sl3e"]
+[ext_resource type="AudioStream" uid="uid://416ggsvxd0ju" path="res://Space shooter redux/Bonus/sfx_zap.ogg" id="3_gmm3u"]
+[ext_resource type="AudioStream" uid="uid://dgpq1l142glkm" path="res://Space shooter redux/Bonus/sfx_twoTone.ogg" id="5_huudn"]
+
+[node name="UI" type="CanvasLayer" groups=["ui"]]
+script = ExtResource("1_mb38b")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="MarginContainer" groups=["ui"]]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_0i4gu")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -42.0
+offset_right = 168.0
+offset_bottom = -6.0
+grow_vertical = 0
+scale = Vector2(1.22, 1.22)
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" groups=["ui"]]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 7
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+offset_right = 168.0
+offset_bottom = 36.0
+scale = Vector2(1.22, 1.22)
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="EMPTY" type="Label" parent="MarginContainer3"]
+layout_mode = 2
+
+[node name="GOOD" type="Label" parent="MarginContainer3"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0i4gu")
+text = "GOOD!"
+
+[node name="GREAT" type="Label" parent="MarginContainer3"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0i4gu")
+text = "GREAT!"
+
+[node name="EPIC" type="Label" parent="MarginContainer3"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0i4gu")
+text = "EPIC!"
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="ScoreSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gmm3u")
+
+[node name="ComboSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4sl3e")
+
+[node name="ComboSound2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_huudn")
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

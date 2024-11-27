@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://decbtg1buqut"]
+
+[ext_resource type="Script" path="res://Scenes/slow_power_up.gd" id="1_c75ls"]
+[ext_resource type="Texture2D" uid="uid://bg5j7dxcmfpd2" path="res://Space shooter redux/PNG/Power-ups/powerupBlue_star.png" id="1_smp2v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpq2e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_smp2v")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgi2t"]
+size = Vector2(33, 32)
+
+[node name="SlowPowerUp" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_c75ls")
+blink_time = 1
+
+[node name="SlowPowerUpSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_smp2v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mpq2e")
+frame = 1
+frame_progress = 0.454775
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dgi2t")
+
+[node name="SlowTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Timeout" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[node name="Move" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="timeout" from="SlowTimer" to="." method="_on_slow_timer_timeout"]
+[connection signal="timeout" from="Move" to="." method="_on_move_timeout"]

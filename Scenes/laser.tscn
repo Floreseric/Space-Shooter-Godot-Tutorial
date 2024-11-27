@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://cae40a8rurxgt"]
+
+[ext_resource type="Texture2D" uid="uid://crogs3wsy53u8" path="res://Space shooter redux/PNG/Lasers/laserBlue01.png" id="1_3ag05"]
+[ext_resource type="Script" path="res://Scenes/laser.gd" id="1_qod1g"]
+[ext_resource type="Texture2D" uid="uid://depqdo11miojg" path="res://Space shooter redux/PNG/Lasers/laserBlue02.png" id="3_l7gb2"]
+[ext_resource type="Texture2D" uid="uid://ck2h6o1w87wqo" path="res://Space shooter redux/PNG/Lasers/laserBlue03.png" id="4_3yvi0"]
+[ext_resource type="Texture2D" uid="uid://u11mntn8ji7g" path="res://Space shooter redux/PNG/Lasers/laserBlue04.png" id="5_pvlob"]
+[ext_resource type="Texture2D" uid="uid://bq48j0xnhmqx5" path="res://Space shooter redux/PNG/Lasers/laserBlue05.png" id="6_rkm0q"]
+[ext_resource type="Texture2D" uid="uid://krbrkt6a6683" path="res://Space shooter redux/PNG/Lasers/laserBlue06.png" id="7_rxxfr"]
+[ext_resource type="Texture2D" uid="uid://dqmrjllm4rp5q" path="res://Space shooter redux/PNG/Lasers/laserBlue07.png" id="8_gr42r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0bdw3"]
+radius = 6.0
+height = 54.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bxi5p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3ag05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_3ag05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_3ag05")
+}],
+"loop": false,
+"name": &"Initialize",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_l7gb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3yvi0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pvlob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rkm0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rxxfr")
+}],
+"loop": true,
+"name": &"Pulse",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_gr42r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gr42r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gr42r")
+}],
+"loop": true,
+"name": &"leave",
+"speed": 1.0
+}]
+
+[node name="Laser" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_qod1g")
+speed = 800
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0bdw3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3ag05")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 2.21622)
+sprite_frames = SubResource("SpriteFrames_bxi5p")
+animation = &"Initialize"
+autoplay = "Initialize"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

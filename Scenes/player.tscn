@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://b665dggvbrmky"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_38o6e"]
+[ext_resource type="Texture2D" uid="uid://bv7tmkocw5as1" path="res://Space shooter redux/PNG/playerShip1_blue.png" id="1_bp358"]
+[ext_resource type="AudioStream" uid="uid://ctj7k2v874v0p" path="res://Space shooter redux/Bonus/sfx_laser1.ogg" id="3_hbv8k"]
+[ext_resource type="AudioStream" uid="uid://rtsnuwfy2d1y" path="res://Space shooter redux/Bonus/sfx_lose.ogg" id="4_p7gs0"]
+[ext_resource type="AudioStream" uid="uid://kf6r3e3eure3" path="res://Space shooter redux/Bonus/sfx_laser2.ogg" id="4_uqva3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71xfx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bp358")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(-2.425, 0)
+collision_mask = 6
+script = ExtResource("1_38o6e")
+invuln_timer = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["player"]]
+sprite_frames = SubResource("SpriteFrames_71xfx")
+frame_progress = 0.136582
+
+[node name="PlayerImage" type="Sprite2D" parent="."]
+texture = ExtResource("1_bp358")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(14.425, -7, 7.425, -39, -8.575, -37, -11.575, -6, -50.575, -8, -47.575, 25, -1.575, 41, 51.425, 24, 54.425, -5)
+
+[node name="LaserStartPos" type="Marker2D" parent="."]
+position = Vector2(0, -54)
+
+[node name="coolDownTimer" type="Timer" parent="LaserStartPos"]
+wait_time = 0.699
+one_shot = true
+
+[node name="LaserSound1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hbv8k")
+
+[node name="LaserSound2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_uqva3")
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_p7gs0")
+
+[node name="Hbox Container" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_top = -6.0
+offset_right = 135.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_stretch_ratio = 7.07
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Hbox Container"]
+layout_mode = 2
+fill_mode = 1
+
+[node name="TexEdit" type="TextEdit" parent="Hbox Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "hurray!"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[connection signal="timeout" from="LaserStartPos/coolDownTimer" to="." method="_on_cool_down_timer_timeout"]

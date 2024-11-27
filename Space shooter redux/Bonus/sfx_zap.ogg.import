@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://416ggsvxd0ju"
+path="res://.godot/imported/sfx_zap.ogg-8b98b33a46ccc99aecfc430284eefd7a.oggvorbisstr"
+
+[deps]
+
+source_file="res://Space shooter redux/Bonus/sfx_zap.ogg"
+dest_files=["res://.godot/imported/sfx_zap.ogg-8b98b33a46ccc99aecfc430284eefd7a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

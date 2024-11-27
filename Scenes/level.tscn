@@ -1,0 +1,180 @@
+[gd_scene load_steps=12 format=3 uid="uid://ymwciojukt7h"]
+
+[ext_resource type="Texture2D" uid="uid://dg86q3joww853" path="res://Space shooter redux/Backgrounds/darkPurple.png" id="1_1bmnn"]
+[ext_resource type="Script" path="res://Scenes/level.gd" id="1_etw04"]
+[ext_resource type="PackedScene" uid="uid://b665dggvbrmky" path="res://Scenes/player.tscn" id="2_k76ao"]
+[ext_resource type="Texture2D" uid="uid://d4nu1q54g50cm" path="res://Space shooter redux/PNG/Effects/star1.png" id="4_08xie"]
+[ext_resource type="Texture2D" uid="uid://n8p15myvlwrh" path="res://Space shooter redux/PNG/Effects/star2.png" id="5_16w0k"]
+[ext_resource type="Texture2D" uid="uid://coe0aweijy13w" path="res://Space shooter redux/PNG/Effects/star3.png" id="6_jhsiu"]
+[ext_resource type="PackedScene" uid="uid://b88siv661eds5" path="res://Scenes/ui.tscn" id="7_p2obp"]
+[ext_resource type="Script" path="res://Scenes/debug.gd" id="8_cjgdd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbqv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_08xie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_16w0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jhsiu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ce7kk"]
+size = Vector2(96, 724.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80ksj"]
+size = Vector2(1533, 386)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_etw04")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(638.96, 341)
+scale = Vector2(5.00813, 4.985)
+texture = ExtResource("1_1bmnn")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." groups=["ui"] instance=ExtResource("2_k76ao")]
+
+[node name="Stars" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Stars"]
+sprite_frames = SubResource("SpriteFrames_mbqv4")
+autoplay = "default"
+frame_progress = 0.298912
+
+[node name="Borders" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+position = Vector2(1327, 361.25)
+shape = SubResource("RectangleShape2D_ce7kk")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders/StaticBody2D2"]
+position = Vector2(663, 914)
+shape = SubResource("RectangleShape2D_80ksj")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders/StaticBody2D3"]
+position = Vector2(692.5, -189)
+shape = SubResource("RectangleShape2D_80ksj")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Borders"]
+collision_layer = 132
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders/StaticBody2D4"]
+position = Vector2(-50, 363)
+shape = SubResource("RectangleShape2D_ce7kk")
+metadata/_edit_lock_ = true
+
+[node name="MeteorTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="SlowPowerUp" type="Node2D" parent="."]
+visible = false
+
+[node name="PowerUpSpawnTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Meteors" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Lasers" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="UI" parent="." instance=ExtResource("7_p2obp")]
+
+[node name="DEBUG" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 18.0
+offset_top = 619.0
+offset_right = 58.0
+offset_bottom = 659.0
+script = ExtResource("8_cjgdd")
+
+[node name="Label" type="Label" parent="UI/DEBUG"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "METEORS:"
+
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
+[connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
+[connection signal="child_exiting_tree" from="SlowPowerUp" to="." method="_on_slow_power_up_child_exiting_tree"]
+[connection signal="timeout" from="PowerUpSpawnTimer" to="." method="_on_power_up_spawn_timer_timeout"]
